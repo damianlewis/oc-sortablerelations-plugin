@@ -95,7 +95,7 @@ products:
         form: $/acme/plugin/models/product/fields.yaml
 ```
 
-Lastly, two hidden input fields need to be added to the table rows. One for the parent model ID and the other to for the related model ID. This can be accomplished by using a column partial type. The input field for the parent model should include a `Lists-relationViewList-parent-id` id attribute with a value equal to the parent model ID. The input field for the related model should include a `Lists-relationViewList-related-id` id attribute with a value equal to the related model ID.
+Lastly, two hidden input fields need to be added to the table rows. One for the parent model ID and the other for the related model ID. This can be accomplished by using a column partial type. The input field for the parent model should include a `Lists-relationViewList-parent-id` id attribute with a value equal to the parent model ID. The input field for the related model should include a `Lists-relationViewList-related-id` id attribute with a value equal to the related model ID.
 
 Example partial file for the `title` column:
 ```html
@@ -105,7 +105,7 @@ Example partial file for the `title` column:
 ```
 
 ## Note
-When extending the relation configuration within the parent controller, make sure to include a call to the SortableRelations `relationExtendConfig` method as shown in the following example.
+If extending the relation configuration for the parent controller, make sure to include a call to the 'SortableRelations' `relationExtendConfig` method as shown in the following example.
 ```php
 class Categories extends Controller
 {
