@@ -1,0 +1,5 @@
+.list-widget-sortable-ghost td {
+    background-color: #4ea5e0 !important;
+    color: #fff !important;
+    opacity: 0.4;
+}
