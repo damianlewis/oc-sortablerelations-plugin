@@ -4,7 +4,7 @@ Adds drag and drop sorting functionality to the view list of the relations contr
 ## Usage
 The following example illustrates how to use this plugin. It shows a many-to-many relationship between a category and it's related products. 
 
-Add a `sort_order` field to the pivot database table.
+Add a `relation_sort_order` field to the pivot database table.
 
 ```php
 class CreateCategoryProductTable extends Migration
@@ -15,7 +15,7 @@ class CreateCategoryProductTable extends Migration
             $table->engine = 'InnoDB';
             $table->integer('category_id')->unsigned();
             $table->integer('product_id')->unsigned();
-            $table->integer('sort_order')->unsigned();
+            $table->integer('relation_sort_order')->unsigned();
             $table->primary(['category_id', 'product_id'], 'category_product_primary');
         });
     }
@@ -24,7 +24,7 @@ class CreateCategoryProductTable extends Migration
 }
 ```
 
-Use the `DamianLewis\SortableRelations\Traits\SortableRelations` trait within the parent model of the relation. Add the sortable relation to the `$sortableRelations` array and add the `'sort_order'` attribute to the pivot data array.
+Use the `DamianLewis\SortableRelations\Traits\SortableRelations` trait within the parent model of the relation. Add the sortable relation to the `$sortableRelations` array and add the `'relation_sort_order'` attribute to the pivot data array.
 
 ```php
 class Category extends Model
@@ -37,7 +37,7 @@ class Category extends Model
         'products' => [
             'Acme\Plugin\Models\Product',
             'table' => 'acme_plugin_category_product',
-            'pivot' => ['sort_order']
+            'pivot' => ['relation_sort_order']
         ]
     ];
 
@@ -86,7 +86,7 @@ products:
                 title:
                     label: Title
                     type: partial
-                pivot[sort_order]:
+                pivot[relation_sort_order]:
                     label: Order
                     type: number
                     invisible: true
