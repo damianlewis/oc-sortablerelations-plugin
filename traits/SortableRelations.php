@@ -38,13 +38,13 @@ trait SortableRelations
                             ->where('id', $id)
                             ->first();
                         $target = $model->{$relationName}()
-                            ->wherePivot('sort_order', $attributes['sort_order'])
+                            ->wherePivot('relation_sort_order', $attributes['relation_sort_order'])
                             ->first();
 
-                        if ($relation->pivot->sort_order > $target->pivot->sort_order) {
-                            $model->shiftRelations($relationName, $target, false, false, $relation->pivot->sort_order);
+                        if ($relation->pivot->relation_sort_order > $target->pivot->relation_sort_order) {
+                            $model->shiftRelations($relationName, $target, false, false, $relation->pivot->relation_sort_order);
                         } else {
-                            $model->shiftRelations($relationName, $target, true, true, $relation->pivot->sort_order);
+                            $model->shiftRelations($relationName, $target, true, true, $relation->pivot->relation_sort_order);
                         }
 
                         $model->reloadRelations($relationName);
@@ -87,7 +87,7 @@ trait SortableRelations
                 }
 
                 if (is_int($ids) || $ids instanceof Model) {
-                    $attributes['sort_order'] = $this->{$relationName}->count() + 1;
+                    $attributes['relation_sort_order'] = $this->{$relationName}->count() + 1;
                 }
 
                 if (is_array($ids)) {
@@ -96,11 +96,11 @@ trait SortableRelations
 
                     foreach ($ids as $index => $id) {
                         if (is_int($id)) {
-                            $newIds[$id] = ['sort_order' => $this->{$relationName}->count() + $count++];
+                            $newIds[$id] = ['relation_sort_order' => $this->{$relationName}->count() + $count++];
                         }
 
                         if (is_array($id)) {
-                            $newIds[$index]['sort_order'] = $this->{$relationName}->count() + $count++;
+                            $newIds[$index]['relation_sort_order'] = $this->{$relationName}->count() + $count++;
                         }
                     }
 
@@ -130,7 +130,7 @@ trait SortableRelations
         $inReverse = false,
         $untilSortOrder = null
     ) {
-        if (!is_null($untilSortOrder) && $relation->pivot->sort_order == $untilSortOrder) {
+        if (!is_null($untilSortOrder) && $relation->pivot->relation_sort_order == $untilSortOrder) {
             return;
         }
 
@@ -138,7 +138,7 @@ trait SortableRelations
             $this->shiftRelations($relationName, $target, $isLeftShift, $inReverse, $untilSortOrder);
         }
 
-        $isLeftShift ? $relation->pivot->sort_order -= 1 : $relation->pivot->sort_order += 1;
+        $isLeftShift ? $relation->pivot->relation_sort_order -= 1 : $relation->pivot->relation_sort_order += 1;
         $relation->pivot->save();
     }
 
@@ -156,7 +156,7 @@ trait SortableRelations
         $relation = $this->parseRelation($relationName, $relation);
 
         return $this->{$relationName}()
-            ->wherePivot('sort_order', $relation->pivot->sort_order + (1 * ($isPrevious ? -1 : 1)))
+            ->wherePivot('relation_sort_order', $relation->pivot->relation_sort_order + (1 * ($isPrevious ? -1 : 1)))
             ->first();
     }
 

@@ -66,7 +66,7 @@ class SortableRelations extends ControllerBehavior
     {
         $config->view['showSorting'] = false;
         $config->view['defaultSort'] = [
-            'column'    => 'pivot[sort_order]',
+            'column'    => 'pivot[relation_sort_order]',
             'direction' => 'asc'
         ];
     }
@@ -86,7 +86,7 @@ class SortableRelations extends ControllerBehavior
 
         call_user_func_array("{$model}::find", [$parentId])
             ->{$relationName}()
-            ->updateExistingPivot($relatedId, ['sort_order' => post('position')]);
+            ->updateExistingPivot($relatedId, ['relation_sort_order' => post('position')]);
     }
 
     /**
