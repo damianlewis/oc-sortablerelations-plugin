@@ -1,5 +1,5 @@
-# OctoberCMS Sortable Relations Plugin
-Adds drag and drop sorting functionality to the view list of the relations controller in October CMS.
+# Sortable relations plugin for October
+Adds drag and drop sorting functionality to the view list of the relations controller in October.
 
 ## Usage
 The following example illustrates how to use this plugin. It shows a many-to-many relationship between a category and it's related products. 

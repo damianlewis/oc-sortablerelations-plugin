@@ -1,7 +1,8 @@
 {
-    "name": "damianlewis/oc-sortable-relations-plugin",
+    "name": "damianlewis/oc-sortablerelations-plugin",
+    "type": "october-plugin",
     "description": "Adds drag and drop sorting functionality to the view list of the relations controller in October CMS.",
-    "keywords": ["october", "octobercms", "sortable", "relations"],
+    "keywords": ["october", "sortable", "relations"],
     "license": "MIT",
     "authors": [
         {
@@ -11,13 +12,13 @@
     ],
     "require": {
         "php": ">=7.0",
+        "composer/installers": "~1.0",
         "damianlewis/october-laravel-pivot": "dev-master"
     },
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@github.com:damianlewis/october-laravel-pivot.git"
+            "url": "https://github.com/damianlewis/october-laravel-pivot"
         }
-    ],
-    "minimum-stability": "dev"
+    ]
 }
