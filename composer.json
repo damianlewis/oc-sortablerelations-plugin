@@ -1,5 +1,5 @@
 {
-    "name": "damianlewis/oc-sortablerelations-plugin",
+    "name": "damianlewis/oc-sortable-relations-plugin",
     "type": "october-plugin",
     "description": "Adds drag and drop sorting functionality to the view list of the relations controller in October CMS.",
     "keywords": ["october", "sortable", "relations"],
