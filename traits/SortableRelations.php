@@ -106,10 +106,9 @@ trait SortableRelations
 
                     $ids = $newIds;
                 }
-
-                return [$ids, $attributes];
             }
         }
+        return [$ids, $attributes];
     }
 
     /**
